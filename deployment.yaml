@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment # The name of the Kubernetes Deployment
+  labels:
+    app: react-app
+spec:
+  replicas: 3 # The number of pods to be created
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: react-app # Name of the container
+        image: vedant120/react-app:v4 # Docker image for the React.js app
+        imagePullPolicy: Always # Ensure Kubernetes pulls the latest image from Docker Hub
+        ports:
+        - containerPort: 3000 # Port exposed by the container
