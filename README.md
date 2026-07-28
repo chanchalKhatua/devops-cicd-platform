@@ -1,70 +1,228 @@
-# Getting Started with Create React App
+# 🚀 DevOps CI/CD Pipeline for React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete end-to-end DevOps project demonstrating how to build, test, containerize, and deploy a React application using modern DevOps tools and practices.
 
-## Available Scripts
+This project automates the entire software delivery lifecycle using Jenkins, Docker, Kubernetes, and AWS.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+# 📌 Project Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project implements a CI/CD pipeline that automatically:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Pulls source code from GitHub
+* Installs project dependencies
+* Builds the React application
+* Creates a Docker image
+* Pushes the image to Docker Hub
+* Deploys the application to a Kubernetes cluster
+* Verifies successful deployment
 
-### `npm test`
+The goal is to simulate a production-ready deployment pipeline used by modern software teams.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+# 🛠️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* React.js
+* Node.js
+* Jenkins
+* Docker
+* Docker Hub
+* Kubernetes (K3s)
+* Git & GitHub
+* Linux (Ubuntu)
+* Nginx
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 📂 Project Structure
 
-### `npm run eject`
+```text
+.
+├── public/
+├── src/
+├── Dockerfile
+├── Jenkinsfile
+├── deployment.yaml
+├── service.yaml
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# ⚙️ Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Before running this project, ensure the following tools are installed:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Node.js 22+
+* npm
+* Docker
+* Jenkins
+* kubectl
+* Kubernetes (K3s)
+* Git
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 📥 Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Clone the repository:
 
-### Code Splitting
+```bash
+git clone https://github.com/<your-username>/<repository>.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Move into the project directory:
 
-### Analyzing the Bundle Size
+```bash
+cd <repository>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Install dependencies:
 
-### Making a Progressive Web App
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+# ▶️ Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Start the development server:
 
-### Deployment
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Open your browser:
 
-### `npm run build` fails to minify
+```
+http://localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+# 🧪 Run Tests
+
+```bash
+npm test
+```
+
+---
+
+# 🏗️ Production Build
+
+```bash
+npm run build
+```
+
+The optimized production build will be generated inside the `build/` directory.
+
+---
+
+# 🐳 Docker
+
+Build the Docker image:
+
+```bash
+docker build -t react-app .
+```
+
+Run the container:
+
+```bash
+docker run -d -p 80:80 react-app
+```
+
+---
+
+# ☸️ Kubernetes Deployment
+
+Deploy the application:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Check deployment status:
+
+```bash
+kubectl get deployments
+kubectl get pods
+kubectl get svc
+```
+
+---
+
+# 🔄 Jenkins CI/CD Pipeline
+
+The Jenkins pipeline performs the following stages:
+
+1. Checkout source code from GitHub
+2. Install npm dependencies
+3. Run tests
+4. Build the React application
+5. Build Docker image
+6. Push Docker image to Docker Hub
+7. Deploy to Kubernetes
+8. Verify deployment
+
+---
+
+# 📦 Available npm Scripts
+
+| Command         | Description                               |
+| --------------- | ----------------------------------------- |
+| `npm start`     | Starts the development server             |
+| `npm test`      | Runs the test suite                       |
+| `npm run build` | Builds the application for production     |
+| `npm run eject` | Ejects the Create React App configuration |
+
+---
+
+# 📸 Future Improvements
+
+* GitHub Webhook integration
+* SonarQube code quality analysis
+* Trivy container image scanning
+* Prometheus monitoring
+* Grafana dashboards
+* ArgoCD GitOps deployment
+* Helm charts
+* Multi-environment deployments (Dev, QA, Prod)
+
+---
+
+# 📖 Learning Objectives
+
+This project demonstrates practical experience with:
+
+* CI/CD pipeline design
+* Docker containerization
+* Kubernetes deployments
+* Jenkins Pipeline (Declarative)
+* Linux administration
+* GitHub integration
+* Kubernetes Services and Deployments
+* Infrastructure automation
+* DevOps best practices
+
+---
+
+# 👨‍💻 Author
+
+**Chanchal Khatua**
+
+M.Tech (Computer Science & Engineering), NIT Agartala
+
+Interested in DevOps, Cloud Engineering, Site Reliability Engineering (SRE), and Platform Engineering.
+
+---
+
+# 📄 License
+
+This project is intended for learning and portfolio purposes. Feel free to fork and customize it for your own use.
