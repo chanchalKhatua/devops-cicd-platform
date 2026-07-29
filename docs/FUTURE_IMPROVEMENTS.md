@@ -9,12 +9,14 @@ Track planned enhancements for the DevOps CI/CD Platform.
 
 ---
 
+# 🔥 Phase 1 — Core Foundation (High Priority)
+
 ## Bootstrap & Environment Setup
 
 - [ ] Create `bootstrap.sh` to install all required tools.
-- [ ] Add OS detection (Ubuntu, Debian, Amazon Linux).
+- [ ] Add OS detection.
 - [ ] Add WSL detection.
-- [ ] Support selective installation (`--docker`, `--node`, etc.).
+- [ ] Support selective installation.
 - [ ] Verify system requirements.
 - [ ] Display installation summary.
 
@@ -22,119 +24,158 @@ Track planned enhancements for the DevOps CI/CD Platform.
 
 ## Script Improvements
 
-- [ ] Create `scripts/common.sh` for shared functions.
+- [ ] Create `scripts/common.sh`.
 - [ ] Standardize logging.
-- [ ] Add colored terminal output.
+- [ ] Add colored output.
 - [ ] Improve error handling.
-- [ ] Add debug mode.
 - [ ] Add verbose mode.
+- [ ] Add debug mode.
 
 ---
 
 ## Version Management
 
-- [ ] Pin Docker version (optional).
 - [ ] Validate installed versions.
-- [ ] Check for latest available versions.
 - [ ] Validate tool compatibility.
+- [ ] Check latest versions.
+- [ ] Pin Docker version (optional).
 
 ---
+
+## Git Automation
+
+- [ ] Interactive Git push script.
+- [ ] Show changed files before commit.
+- [ ] Pull with rebase automatically.
+- [ ] Validate current branch.
+- [ ] Prevent empty commits.
+- [ ] Git tag support.
+
+---
+
+# 🐳 Phase 2 — Docker (High Priority)
 
 ## Docker
 
-- [ ] Verify Docker daemon automatically.
-- [ ] Detect if Docker can run without `sudo`.
-- [ ] Support multiple Linux distributions.
-- [ ] Add Docker cleanup utility.
-- [ ] Add Docker uninstall script.
+- [ ] Verify Docker daemon.
+- [ ] Detect Docker without sudo.
+- [ ] Docker cleanup utility.
+- [ ] Docker uninstall.
+- [ ] Multi-platform builds.
+- [ ] Build cache optimization.
+- [ ] Docker image scanning.
+- [ ] Docker Hub automation.
 
 ---
+
+# ☸️ Phase 3 — Kubernetes (High Priority)
 
 ## Kubernetes
 
 - [ ] Automate Kind cluster creation.
 - [ ] Validate Kubernetes installation.
-- [ ] Install Kubernetes utilities (k9s, stern, etc.).
-- [ ] Add cluster health checks.
+- [ ] Install k9s.
+- [ ] Install stern.
+- [ ] Cluster health check.
+- [ ] Namespace management.
+- [ ] Backup cluster manifests.
 
 ---
+
+# ☁️ Phase 4 — AWS
 
 ## AWS
 
-- [ ] Automate AWS CLI configuration.
-- [ ] Validate AWS credentials.
-- [ ] Automate ECR login.
-- [ ] Support multiple AWS profiles.
+- [ ] AWS CLI configuration.
+- [ ] Validate credentials.
+- [ ] ECR login.
+- [ ] Multiple AWS profiles.
+- [ ] EKS automation.
 
 ---
+
+# 🌍 Phase 5 — Infrastructure
 
 ## Terraform
 
-- [ ] Validate Terraform installation.
-- [ ] Initialize Terraform backend automatically.
+- [ ] Validate installation.
+- [ ] Init backend.
 - [ ] Validate providers.
+- [ ] State management.
 
 ---
+
+# 🚀 Phase 6 — CI/CD
 
 ## Jenkins
 
-- [ ] Automate Jenkins installation.
-- [ ] Install recommended plugins.
-- [ ] Configure initial admin user.
-- [ ] Create Jenkins backup script.
+- [ ] Install Jenkins.
+- [ ] Install plugins.
+- [ ] Configure admin.
+- [ ] Backup Jenkins.
+- [ ] Automated pipeline creation.
 
 ---
+
+## GitHub Actions
+
+- [ ] Test installation scripts.
+- [ ] Markdown lint.
+- [ ] Repository quality checks.
+
+---
+
+# 🔐 Phase 7 — Security
 
 ## Security
 
-- [ ] Verify downloads using checksums.
-- [ ] Add ShellCheck validation.
-- [ ] Add security scanning.
-- [ ] Follow least-privilege principles.
+- [ ] Verify downloads.
+- [ ] ShellCheck.
+- [ ] Trivy image scan.
+- [ ] Least privilege.
+- [ ] Secret scanning.
 
 ---
 
-## CI/CD
-
-- [ ] Add GitHub Actions workflow.
-- [ ] Test installation scripts automatically.
-- [ ] Add Markdown linting.
-- [ ] Add repository quality checks.
-
----
-
-## Documentation
-
-- [ ] Add architecture diagram.
-- [ ] Add installation flow diagram.
-- [ ] Improve troubleshooting guide.
-- [ ] Add FAQ.
-- [ ] Add project roadmap.
-- [ ] Add contribution guide.
-
----
+# 📊 Phase 8 — Monitoring
 
 ## Monitoring
 
-- [ ] Add Prometheus setup.
-- [ ] Add Grafana dashboards.
-- [ ] Add Alertmanager configuration.
+- [ ] Prometheus.
+- [ ] Grafana.
+- [ ] Alertmanager.
+- [ ] Loki.
+- [ ] Tempo.
 
 ---
+
+# 🔄 Phase 9 — GitOps
 
 ## GitOps
 
-- [ ] Automate Argo CD installation.
-- [ ] Bootstrap GitOps repository.
-- [ ] Automate application deployment.
+- [ ] Install Argo CD.
+- [ ] Bootstrap GitOps.
+- [ ] Auto deployment.
+- [ ] Drift detection.
 
 ---
 
-## Nice-to-Have
+# 📚 Documentation
+
+- [ ] Architecture diagram.
+- [ ] Installation flow.
+- [ ] Troubleshooting.
+- [ ] FAQ.
+- [ ] Roadmap.
+- [ ] Contribution guide.
+
+---
+
+# ⭐ Nice-to-Have
 
 - [ ] Interactive installation menu.
 - [ ] Configuration wizard.
 - [ ] Progress indicators.
-- [ ] Installation report generation.
-- [ ] Automatic dependency checking.
+- [ ] Installation report.
+- [ ] Dependency checker.
 - [ ] Dry-run mode.
