@@ -53,9 +53,18 @@ pipeline {
         }
 
         stage('Docker Push') {
+
+            environment {
+                 DOCKER_CREDS = credentials('dockerhub-creds')
+           }
+
             steps {
                 sh '''
                     chmod +x scripts/docker-push.sh
+
+                    export DOCKER_USERNAME=$DOCKER_CREDS_USR
+                    export DOCKER_PASSWORD=$DOCKER_CREDS_PSW
+
                     ./scripts/docker-push.sh -y
                 '''
             }
