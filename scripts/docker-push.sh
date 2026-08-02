@@ -106,9 +106,20 @@ fi
 echo
 echo "Checking Docker Hub login..."
 
-if ! docker info 2>/dev/null | grep -q "Username"; then
+if [[ -n "$DOCKER_USERNAME" && -n "$DOCKER_PASSWORD" ]]; then
+
+    echo "Using Jenkins Docker Hub credentials..."
+
+    echo "$DOCKER_PASSWORD" | docker login \
+        -u "$DOCKER_USERNAME" \
+        --password-stdin
+
+elif ! docker info 2>/dev/null | grep -q "Username"; then
+
     echo "Docker Hub login required."
+
     docker login
+
 fi
 
 # --------------------------------------
