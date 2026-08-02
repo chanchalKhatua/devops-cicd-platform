@@ -13,41 +13,33 @@ pipeline {
             }
         }
 
-        stage('Show Environment') {
+        stage('Environment Validation') {
             steps {
                 sh '''
                     echo "======================================"
-                    echo " Build Information"
+                    echo " Environment Validation"
                     echo "======================================"
 
                     pwd
                     whoami
 
+                    echo
+                    echo "Latest Commit:"
                     git log -1 --oneline
 
-                    docker --version
+                    echo
+                    echo "Tool Versions:"
                     node --version
                     npm --version
+                    docker --version
+
+                    echo
+                    echo "Checking Docker daemon..."
+                    docker info > /dev/null
+
+                    echo
+                    echo "Environment validation completed."
                 '''
-            }
-        }
-
-      stage('Install Dependencies') {
-         steps {
-           dir('frontend') {
-            sh '''
-                npm install
-                npm list vite
-            '''
-           }
-        }
-      }
-
-        stage('Build React') {
-            steps {
-                dir('frontend') {
-                    sh 'npm run build'
-                }
             }
         }
 
@@ -60,21 +52,36 @@ pipeline {
             }
         }
 
+        stage('Docker Push') {
+            steps {
+                sh '''
+                    chmod +x scripts/docker-push.sh
+                    ./scripts/docker-push.sh --ci
+                '''
+            }
+        }
     }
 
     post {
 
         success {
-            echo 'Build Successful'
+            echo '''
+======================================
+ Pipeline Completed Successfully
+======================================
+'''
         }
 
         failure {
-            echo 'Build Failed'
+            echo '''
+======================================
+ Pipeline Failed
+======================================
+'''
         }
 
         always {
             cleanWs()
         }
-
     }
 }
