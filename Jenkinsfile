@@ -56,7 +56,7 @@ pipeline {
             steps {
                 sh '''
                     chmod +x scripts/docker-push.sh
-                    ./scripts/docker-push.sh --ci
+                    ./scripts/docker-push.sh -y
                 '''
             }
         }
