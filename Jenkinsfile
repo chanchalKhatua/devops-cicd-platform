@@ -5,10 +5,6 @@ pipeline {
         timestamps()
     }
 
-    environment {
-        NODE_ENV = 'production'
-    }
-
     stages {
 
         stage('Checkout') {
@@ -36,13 +32,16 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                dir('frontend') {
-                    sh 'npm install'
-                }
-            }
+      stage('Install Dependencies') {
+         steps {
+           dir('frontend') {
+            sh '''
+                npm install
+                npm list vite
+            '''
+           }
         }
+      }
 
         stage('Build React') {
             steps {
