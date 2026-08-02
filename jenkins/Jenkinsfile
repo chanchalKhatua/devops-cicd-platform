@@ -1,44 +1,96 @@
 pipeline {
     agent any
 
-    environment {
-        AWS_DEFAULT_REGION = "us-east-1"
+    options {
+        timestamps()
     }
 
     stages {
-        stage('Checkout Source') {
+
+        stage('Checkout') {
             steps {
-                git branch: 'e2e_project', url: 'https://github.com/vedantsharmascaler/testing_repo.git'
+                checkout scm
             }
         }
 
-        stage('Build Image') {
+        stage('Environment Validation') {
             steps {
-                script {
-                    sh 'docker build -t vedant120/react-app:v4 .'
-                }
-            }
-        }
-        stage('Docker Login') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                    sh 'echo "$PASS" | docker login -u "$USER" --password-stdin'
-                }
+                sh '''
+                    echo "======================================"
+                    echo " Environment Validation"
+                    echo "======================================"
+
+                    pwd
+                    whoami
+
+                    echo
+                    echo "Latest Commit:"
+                    git log -1 --oneline
+
+                    echo
+                    echo "Tool Versions:"
+                    node --version
+                    npm --version
+                    docker --version
+
+                    echo
+                    echo "Checking Docker daemon..."
+                    docker info > /dev/null
+
+                    echo
+                    echo "Environment validation completed."
+                '''
             }
         }
 
-        stage('Push') {
+        stage('Docker Build') {
             steps {
-                sh 'docker push vedant120/react-app:v4'
+                sh '''
+                    chmod +x scripts/docker-build.sh
+                    ./scripts/docker-build.sh
+                '''
             }
         }
 
-        stage('Deploy to EKS') {
+        stage('Docker Push') {
+
+            environment {
+                 DOCKER_CREDS = credentials('dockerhub-creds')
+           }
+
             steps {
-                sh 'kubectl config use-context arn:aws:eks:us-east-1:266735832911:cluster/jenkinsProject'
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                sh '''
+                    chmod +x scripts/docker-push.sh
+
+                    export DOCKER_USERNAME=$DOCKER_CREDS_USR
+                    export DOCKER_PASSWORD=$DOCKER_CREDS_PSW
+
+                    ./scripts/docker-push.sh -y
+                '''
             }
+        }
+    }
+
+    post {
+
+        success {
+            echo '''
+======================================
+ Pipeline Completed Successfully
+======================================
+'''
+        }
+
+        failure {
+            echo '''
+======================================
+ Pipeline Failed
+======================================
+'''
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
