@@ -1,4 +1,4 @@
-````markdown
+
 # Kubernetes Metrics Server & HPA
 
 ## 1. Metrics Server
